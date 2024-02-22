@@ -19,7 +19,7 @@ class CalendarHeader extends StatelessWidget {
   final VoidCallback onHeaderTap;
   final VoidCallback onHeaderLongPress;
   final ValueChanged<CalendarFormat> onFormatButtonTap;
-  final Map<CalendarFormat, String> availableCalendarFormats;
+  final Map<CalendarFormat, Widget> availableCalendarFormats;
   final DayBuilder? headerTitleBuilder;
 
   const CalendarHeader({

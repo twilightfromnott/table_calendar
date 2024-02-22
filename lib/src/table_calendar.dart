@@ -80,7 +80,7 @@ class TableCalendar<T> extends StatefulWidget {
   ///   CalendarFormat.week: 'Week',
   /// }
   /// ```
-  final Map<CalendarFormat, String> availableCalendarFormats;
+  final Map<CalendarFormat, Widget> availableCalendarFormats;
 
   /// Determines the visibility of calendar header.
   final bool headerVisible;
@@ -217,9 +217,9 @@ class TableCalendar<T> extends StatefulWidget {
     this.weekendDays = const [DateTime.saturday, DateTime.sunday],
     this.calendarFormat = CalendarFormat.month,
     this.availableCalendarFormats = const {
-      CalendarFormat.month: 'Month',
-      CalendarFormat.twoWeeks: '2 weeks',
-      CalendarFormat.week: 'Week',
+      CalendarFormat.month: Text('Month'),
+      CalendarFormat.twoWeeks: Text('2 weeks'),
+      CalendarFormat.week: Text('Week'),
     },
     this.headerVisible = true,
     this.daysOfWeekVisible = true,

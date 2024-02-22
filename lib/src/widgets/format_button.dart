@@ -14,7 +14,7 @@ class FormatButton extends StatelessWidget {
   final BoxDecoration decoration;
   final EdgeInsets padding;
   final bool showsNextFormat;
-  final Map<CalendarFormat, String> availableCalendarFormats;
+  final Map<CalendarFormat, Widget> availableCalendarFormats;
 
   const FormatButton({
     Key? key,
@@ -29,14 +29,9 @@ class FormatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final child = Container(
-      decoration: decoration,
-      padding: padding,
-      child: Text(
-        _formatButtonText,
-        style: textStyle,
-      ),
-    );
+    final child = showsNextFormat
+        ? availableCalendarFormats[_nextFormat()]
+        : availableCalendarFormats[calendarFormat];
 
     final platform = Theme.of(context).platform;
 
@@ -45,7 +40,8 @@ class FormatButton extends StatelessWidget {
         ? CupertinoButton(
             onPressed: () => onTap(_nextFormat()),
             padding: EdgeInsets.zero,
-            child: child,
+            minSize: 0,
+            child: child ?? SizedBox(),
           )
         : InkWell(
             borderRadius:
@@ -54,10 +50,6 @@ class FormatButton extends StatelessWidget {
             child: child,
           );
   }
-
-  String get _formatButtonText => showsNextFormat
-      ? availableCalendarFormats[_nextFormat()]!
-      : availableCalendarFormats[calendarFormat]!;
 
   CalendarFormat _nextFormat() {
     final formats = availableCalendarFormats.keys.toList();
